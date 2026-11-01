@@ -1,0 +1,244 @@
+{
+  "trained_at": "2026-11-01T03:49:22.427220+00:00",
+  "dataset": "Deterministic synthetic Indore-inspired microgrid; NOT measured data",
+  "rows": 2880,
+  "train_rows": 2015,
+  "validation_rows": 433,
+  "test_rows": 432,
+  "split": {
+    "train_start": "2026-07-04 10:00:00",
+    "train_end": "2026-09-26 08:00:00",
+    "validation_end": "2026-10-14 09:00:00",
+    "test_end": "2026-11-01 09:00:00"
+  },
+  "preprocessing": {
+    "solar": {
+      "missing": 37,
+      "invalid_or_outlier": 1
+    },
+    "wind": {
+      "missing": 27,
+      "invalid_or_outlier": 2
+    },
+    "load": {
+      "missing": 26,
+      "invalid_or_outlier": 0
+    },
+    "irradiance": {
+      "missing": 20,
+      "invalid_or_outlier": 1
+    },
+    "temperature": {
+      "missing": 27,
+      "invalid_or_outlier": 8
+    },
+    "humidity": {
+      "missing": 0,
+      "invalid_or_outlier": 0
+    },
+    "cloud_cover": {
+      "missing": 0,
+      "invalid_or_outlier": 0
+    },
+    "wind_speed": {
+      "missing": 22,
+      "invalid_or_outlier": 0
+    },
+    "wind_direction": {
+      "missing": 0,
+      "invalid_or_outlier": 0
+    },
+    "air_density": {
+      "missing": 0,
+      "invalid_or_outlier": 0
+    }
+  },
+  "targets": {
+    "solar": {
+      "selected": "XGBoost / depth 3",
+      "version": "solar-v1",
+      "metrics": {
+        "mae": 2.8221011124423807,
+        "rmse": 6.896832030485797,
+        "r2": 0.9980559051842027
+      },
+      "validation_comparison": [
+        {
+          "model": "Linear regression (Ridge)",
+          "mae": 3.3876123352449357,
+          "rmse": 4.747943222257881,
+          "r2": 0.9990699209554582
+        },
+        {
+          "model": "Random Forest / depth 8",
+          "mae": 2.2863343495093953,
+          "rmse": 4.632606642690923,
+          "r2": 0.9991145589001715
+        },
+        {
+          "model": "Random Forest / depth 14",
+          "mae": 2.237519693849724,
+          "rmse": 4.659842463395036,
+          "r2": 0.9991041170012843
+        },
+        {
+          "model": "XGBoost / depth 3",
+          "mae": 2.0266419741049515,
+          "rmse": 3.7251491779120274,
+          "r2": 0.9994274727472312
+        },
+        {
+          "model": "XGBoost / depth 5",
+          "mae": 2.083329184777212,
+          "rmse": 3.957403865035682,
+          "r2": 0.9993538556175369
+        }
+      ],
+      "features": [
+        "irradiance",
+        "temperature",
+        "humidity",
+        "cloud_cover",
+        "wind_speed",
+        "hour",
+        "month",
+        "season",
+        "hour_sin",
+        "hour_cos",
+        "month_sin",
+        "month_cos"
+      ],
+      "target": "solar_kw",
+      "capacity_kw": 650,
+      "naive_seasonal_mae": 11.23899985753451
+    },
+    "wind": {
+      "selected": "Random Forest / depth 14",
+      "version": "wind-v1",
+      "metrics": {
+        "mae": 6.050663375354573,
+        "rmse": 8.142355298590966,
+        "r2": 0.9845104688574796
+      },
+      "validation_comparison": [
+        {
+          "model": "Linear regression (Ridge)",
+          "mae": 14.173284538081788,
+          "rmse": 22.427375174781453,
+          "r2": 0.8785142566007181
+        },
+        {
+          "model": "Random Forest / depth 8",
+          "mae": 6.328751236973724,
+          "rmse": 10.197054049467527,
+          "r2": 0.9748858859718385
+        },
+        {
+          "model": "Random Forest / depth 14",
+          "mae": 6.328257761547042,
+          "rmse": 9.947160275491864,
+          "r2": 0.9761017197049578
+        },
+        {
+          "model": "XGBoost / depth 3",
+          "mae": 6.4856172011141675,
+          "rmse": 11.068918181385916,
+          "r2": 0.9704076964131562
+        },
+        {
+          "model": "XGBoost / depth 5",
+          "mae": 6.647577684496844,
+          "rmse": 11.443297737499305,
+          "r2": 0.9683720666610259
+        }
+      ],
+      "features": [
+        "wind_speed",
+        "wind_direction",
+        "temperature",
+        "air_density",
+        "hour",
+        "month",
+        "wind_cubic",
+        "wind_lag_1",
+        "wind_lag_24"
+      ],
+      "target": "wind_kw",
+      "capacity_kw": 450,
+      "naive_seasonal_mae": 26.579432202769105
+    },
+    "load": {
+      "selected": "Random Forest / depth 14",
+      "version": "load-v1",
+      "metrics": {
+        "mae": 7.3221783849979385,
+        "rmse": 19.848988009043353,
+        "r2": 0.889159839129465
+      },
+      "validation_comparison": [
+        {
+          "model": "Linear regression (Ridge)",
+          "mae": 14.783411629049224,
+          "rmse": 33.249363010306666,
+          "r2": 0.7652425405363923
+        },
+        {
+          "model": "Random Forest / depth 8",
+          "mae": 6.890798888308605,
+          "rmse": 32.05377172643991,
+          "r2": 0.78182196732472
+        },
+        {
+          "model": "Random Forest / depth 14",
+          "mae": 6.118379585163368,
+          "rmse": 32.21496502626332,
+          "r2": 0.7796220847917226
+        },
+        {
+          "model": "XGBoost / depth 3",
+          "mae": 7.012297785456899,
+          "rmse": 30.147834575503204,
+          "r2": 0.8069965869605249
+        },
+        {
+          "model": "XGBoost / depth 5",
+          "mae": 6.748721127453514,
+          "rmse": 33.194194882009626,
+          "r2": 0.7660209244848782
+        }
+      ],
+      "features": [
+        "temperature",
+        "humidity",
+        "cloud_cover",
+        "hour",
+        "day_of_week",
+        "month",
+        "season",
+        "hour_sin",
+        "hour_cos",
+        "is_weekend",
+        "cooling_degree",
+        "total_lag_1",
+        "total_lag_24",
+        "load_rolling_24"
+      ],
+      "target": "total_kw",
+      "capacity_kw": 5000,
+      "naive_seasonal_mae": 5.026722559531461
+    }
+  },
+  "anomaly": {
+    "model": "Isolation Forest",
+    "training_rows": 1995,
+    "contamination": 0.02,
+    "features": [
+      "voltage",
+      "current",
+      "frequency",
+      "power_factor",
+      "transformer_loading"
+    ],
+    "note": "Unsupervised abnormality score; not a failure probability. Complemented by explicit electrical operating bands."
+  }
+}
